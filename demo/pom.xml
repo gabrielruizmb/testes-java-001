@@ -8,10 +8,10 @@
 		<version>3.4.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>calculos_testes</artifactId>
+	<groupId>abc</groupId>
+	<artifactId>demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>calculos_testes</name>
+	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -51,6 +51,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
