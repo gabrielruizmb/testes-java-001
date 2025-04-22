@@ -34,7 +34,10 @@ public class CalculoService {
 	public int soma(List<Integer> lista) {
 		int soma = 0;
 		for (int i = 0; i < lista.size(); i++) {
-			soma += lista.get(i);
+			if(lista.get(i) == null)
+				throw new RuntimeException("dslçfjakd");
+			else
+				soma += lista.get(i);
 		}
 		return soma;
 	}
@@ -49,6 +52,8 @@ public class CalculoService {
 		if (lista == null || lista.isEmpty()) {
 	        throw new IllegalArgumentException("A lista não pode ser nula ou vazia");
 	    }
+		
+		Collections.sort(lista);
 
 	    if (lista.size() % 2 == 1) { //ÍMPAR
 	        return lista.get(lista.size() / 2);
