@@ -2,6 +2,7 @@ package app.service.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,6 +95,13 @@ public class CalculoServiceTest {
 		assertEquals(8, this.calculoService.mediana(lista));
 	}
 	
-	
+	// @Test
+	// @DisplayName("Cena 06 - Testar mediana com lista vazia")
+	// void scene006() {
+	// 	List<Integer> list = new ArrayList<>();
+
+	// 	assertThrows(calculoService.mediana(list), 
+	// 		new IllegalArgumentException("A lista não pode ser nula ou vazia"));
+	// }
 
 }
