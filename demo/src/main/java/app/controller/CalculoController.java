@@ -23,9 +23,15 @@ public class CalculoController {
 	private CalculoService calculoService;
 
 	@PostMapping
-	public ResponseEntity<Calculo> calcular(@RequestBody Entrada entrada){
-		Calculo calculo = this.calculoService.calcular(entrada);
-		return new ResponseEntity<>(calculo, HttpStatus.OK);
+	public ResponseEntity<?> calcular(@RequestBody Entrada entrada){
+		try {
+			Calculo calculo = this.calculoService.calcular(entrada);
+			
+			return ResponseEntity.status(HttpStatus.OK).body(calculo);
+			
+		} catch (Exception exception) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+								 .body(exception.getMessage());
+		}
 	}
-
 }
