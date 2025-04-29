@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,6 +93,13 @@ public class CalculoServiceTest {
 		assertEquals(8, this.calculoService.mediana(lista));
 	}
 	
-	
+	// @Test
+	// @DisplayName("Cena 06 - Testar mediana com lista vazia")
+	// void scene006() {
+	// 	List<Integer> list = new ArrayList<>();
+
+	// 	assertThrows(calculoService.mediana(list), 
+	// 		new IllegalArgumentException("A lista não pode ser nula ou vazia"));
+	// }
 
 }

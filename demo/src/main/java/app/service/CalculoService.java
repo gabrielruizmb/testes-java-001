@@ -1,6 +1,5 @@
 package app.service;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,25 +18,24 @@ public class CalculoService {
 
 	public Calculo calcular(Entrada entrada) {
 
+		if (entrada.lista() == null || entrada.lista().isEmpty()) 
+	        throw new IllegalArgumentException("A lista não pode ser nula ou vazia");
+
 		Calculo calculo = new Calculo();
-		calculo.setLista(entrada.getLista());
-		calculo.setSoma(this.soma(entrada.getLista()));
-		calculo.setMedia(this.media(entrada.getLista()));
-		calculo.setMediana(this.mediana(entrada.getLista()));
+		calculo.setLista(entrada.lista());
+		calculo.setSoma(this.soma(entrada.lista()));
+		calculo.setMedia(this.media(entrada.lista()));
+		calculo.setMediana(this.mediana(entrada.lista()));
 
 		this.calculoRepository.save(calculo);
 		return calculo;
-
 	}
-
 
 	public int soma(List<Integer> lista) {
 		int soma = 0;
+
 		for (int i = 0; i < lista.size(); i++) {
-			if(lista.get(i) == null)
-				throw new RuntimeException("dslçfjakd");
-			else
-				soma += lista.get(i);
+			soma += lista.get(i);
 		}
 		return soma;
 	}
@@ -49,9 +47,6 @@ public class CalculoService {
 
 
 	public double mediana(List<Integer> lista) {
-		if (lista == null || lista.isEmpty()) {
-	        throw new IllegalArgumentException("A lista não pode ser nula ou vazia");
-	    }
 		
 		Collections.sort(lista);
 

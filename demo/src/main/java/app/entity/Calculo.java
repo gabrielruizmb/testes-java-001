@@ -25,5 +25,4 @@ public class Calculo {
 	private int soma;
 	private double media;
 	private double mediana;
-	
 }
