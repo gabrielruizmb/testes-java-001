@@ -1,5 +1,7 @@
 package app.controller;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,8 +32,11 @@ public class CalculoController {
 			return ResponseEntity.status(HttpStatus.OK).body(calculo);
 			
 		} catch (Exception exception) {
+			HashMap<String, String> response = new HashMap<>();
+			response.put("lista", "A lista não pode ser nula ou vazia");
+
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-								 .body(exception.getMessage());
+								 .body(response);
 		}
 	}
 }

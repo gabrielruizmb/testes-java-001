@@ -49,9 +49,6 @@ public class CalculoServiceTest {
 		
 	}
 	
-	
-	
-	
 	@Test
 	@DisplayName("Cena 03 - Testar mediana com número par de elementos")
 	void cenario03() {
@@ -65,7 +62,7 @@ public class CalculoServiceTest {
 	}
 	
 	@Test
-	@DisplayName("Cena 04 - Testar mediana com número ímpar de elementos")
+	@DisplayName("Cena 04 - Testar mediana com número ímpar de elementos 1")
 	void cenario04() {
 		List<Integer> lista = new ArrayList<>();
 		lista.add(3);
@@ -79,7 +76,7 @@ public class CalculoServiceTest {
 	
 	
 	@Test
-	@DisplayName("Cena 05 - Testar mediana com número ímpar de elementos")
+	@DisplayName("Cena 05 - Testar mediana com número ímpar de elementos 2")
 	void cenario05() {
 		List<Integer> lista = new ArrayList<>();
 		lista.add(8);
@@ -93,13 +90,15 @@ public class CalculoServiceTest {
 		assertEquals(8, this.calculoService.mediana(lista));
 	}
 	
-	// @Test
-	// @DisplayName("Cena 06 - Testar mediana com lista vazia")
-	// void scene006() {
-	// 	List<Integer> list = new ArrayList<>();
+	@Test
+	@DisplayName("Cena 06 - Testar média")
+	void scene006() {
+		List<Integer> list = new ArrayList<>();
+		list.add(100);
+		list.add(40);
+		list.add(70);
 
-	// 	assertThrows(calculoService.mediana(list), 
-	// 		new IllegalArgumentException("A lista não pode ser nula ou vazia"));
-	// }
+		assertEquals(70, calculoService.media(list));
+	}
 
 }
