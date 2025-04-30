@@ -2,6 +2,7 @@ package app.service.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import app.dto.Entrada;
 import app.service.CalculoService;
 
 @SpringBootTest
@@ -101,4 +103,17 @@ public class CalculoServiceTest {
 		assertEquals(70, calculoService.media(list));
 	}
 
+	@Test
+	@DisplayName("Cena 07 - Testar calculo com lista nula ou vazia")
+	void scene007() {
+		List<Integer> list = new ArrayList<>();
+		Entrada entrada = new Entrada(list);
+
+		Exception exception =  assertThrows(IllegalArgumentException.class, 
+			() -> {
+				calculoService.calcular(entrada);
+			});
+
+		assertTrue(exception.getMessage().equals("A lista não pode ser nula ou vazia"));
+	}
 }
