@@ -3,6 +3,7 @@ package app.service.test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +12,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import app.dto.Entrada;
+import app.entity.Calculo;
+import app.repository.CalculoRepository;
 import app.service.CalculoService;
 
 @SpringBootTest
 public class CalculoServiceTest {
+
+	@MockitoBean
+	CalculoRepository calculoRepository;
 	
 	@Autowired
 	CalculoService calculoService;
@@ -108,6 +115,9 @@ public class CalculoServiceTest {
 	void scene007() {
 		List<Integer> list = new ArrayList<>();
 		Entrada entrada = new Entrada(list);
+		Calculo calculo = new Calculo(0, list, 30, 10, 10);
+
+		when(calculoRepository.save(calculo)).thenReturn(calculo);
 
 		Exception exception =  assertThrows(IllegalArgumentException.class, 
 			() -> {
@@ -115,5 +125,22 @@ public class CalculoServiceTest {
 			});
 
 		assertTrue(exception.getMessage().equals("A lista não pode ser nula ou vazia"));
+	}
+
+	@Test
+	@DisplayName("Cena 008 - Testar calculo com lista válida")
+	void scene008() {
+		List<Integer> list = new ArrayList<>();
+		list.add(10);
+		list.add(10);
+		list.add(10);
+		
+		Entrada entrada = new Entrada(list);
+
+		Calculo calculo = new Calculo(0, list, 30, 10, 10);
+
+		when(calculoRepository.save(calculo)).thenReturn(calculo);
+
+		assertTrue(calculoService.calcular(entrada) != null);
 	}
 }
